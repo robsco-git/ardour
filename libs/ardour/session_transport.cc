@@ -1434,6 +1434,9 @@ Session::set_transport_speed (double speed, framepos_t destination_frame, bool a
 			stop_transport (abort);
 		}
 
+		/* Prevent 'stuck' MIDI notes. */
+		midi_panic();
+
 	} else if (transport_stopped() && speed == 1.0) {
 		if (as_default) {
 			_default_transport_speed = speed;
