@@ -1367,6 +1367,10 @@ Session::locate (framepos_t target_frame, bool with_roll, bool with_flush, bool 
 	}
 
 	_last_roll_location = _last_roll_or_reversal_location =  _transport_frame;
+
+	/* Prevent 'stuck' MIDI notes. */
+	midi_panic();
+	
 	Located (); /* EMIT SIGNAL */
 }
 
